@@ -1,0 +1,157 @@
+# Universal Project Organizer - Claude 專案配置
+# 這個檔案定義了本專案的結構，讓 Claude 能正確放置生成的檔案
+
+# 專案元資訊
+project_type: python-skill
+language: python
+version: "1.0"
+description: "A Claude Skill for automatic file placement in projects"
+
+# 專案根目錄（相對於 .claude 目錄）
+project_root: ".."
+
+# 目錄結構定義
+structure:
+  # Python 腳本
+  script:
+    path: "skill/scripts"
+    naming: "{name}.py"
+    test_path: "tests"
+    test_naming: "test_{name}.py"
+    generate_test: true
+    template: python_script
+
+  # 專案模板配置檔
+  template:
+    path: "skill/templates/{language}"
+    naming: "{name}.yaml"
+    description: "Project template configurations"
+
+  # 範例專案
+  example:
+    path: "skill/examples/example-{name}"
+    description: "Example projects for testing"
+
+  # 文檔
+  doc:
+    path: "docs"
+    naming: "{name}.md"
+    description: "Documentation files"
+
+  # 測試檔案
+  test:
+    path: "tests"
+    naming: "test_{name}.py"
+    template: pytest_test
+
+  # Skill 檔案
+  skill:
+    path: "skill"
+    naming: "SKILL.md"
+    description: "Main Claude Skill file"
+
+# 命名慣例
+naming_conventions:
+  class: "PascalCase"
+  function: "snake_case"
+  constant: "UPPER_SNAKE_CASE"
+  file: "snake_case"
+  module: "snake_case"
+
+# 專案特定規則
+custom_rules:
+  - pattern: "skill/scripts/*.py"
+    requires:
+      - "Proper docstrings"
+      - "Type hints"
+      - "Error handling"
+
+  - pattern: "tests/*.py"
+    requires:
+      - "pytest framework"
+      - "Descriptive test names"
+      - "Test docstrings"
+
+  - pattern: "skill/templates/**/*.yaml"
+    requires:
+      - "Valid YAML syntax"
+      - "Required fields: project_type, language, structure"
+
+# 自動生成選項
+auto_generate:
+  test_files: true
+  docstrings: true
+  type_hints: true
+  imports: true
+
+  # 檔案頭部註解
+  file_headers:
+    enabled: true
+    template: |
+      """
+      {filename}
+
+      {description}
+
+      Part of Universal Project Organizer
+      https://github.com/AsiaOstrich/universal-project-organizer
+      """
+
+# 依賴管理
+dependencies:
+  runtime:
+    - pyyaml>=6.0
+    - pathlib>=1.0
+    - jinja2>=3.0
+
+  development:
+    - pytest>=7.0
+    - pytest-cov>=4.0
+    - black>=23.0
+    - flake8>=6.0
+    - mypy>=1.0
+
+# 專案特定設定
+project_settings:
+  # Python 版本
+  python_version: "3.8+"
+
+  # 程式碼風格
+  code_style:
+    formatter: "black"
+    line_length: 88
+    linter: "flake8"
+
+  # 測試設定
+  testing:
+    framework: "pytest"
+    coverage_threshold: 80
+
+  # 文檔
+  documentation:
+    format: "markdown"
+    api_docs: "auto-generate"
+
+# 支援的專案類型（本專案將支援的）
+supported_project_types:
+  - spring-boot
+  - maven-generic
+  - django
+  - fastapi
+  - flask
+  - react
+  - nextjs
+  - vue
+  - express
+  - go-standard
+
+# 開發階段
+development_phase: "phase1-mvp"
+
+# 版本控制
+version_control:
+  system: "git"
+  main_branch: "master"
+
+# 許可證
+license: "MIT"
