@@ -1,4 +1,10 @@
-# Universal Project Organizer Skill
+---
+name: universal-project-organizer
+description: This skill should be used when developers need to generate files in a project and want them automatically placed in the correct locations based on project type and structure. Use this skill for creating services, controllers, models, components, or any project files in Spring Boot, Django, React, Next.js, or other supported frameworks.
+license: MIT
+---
+
+# Universal Project Organizer
 
 A Claude Skill that helps developers automatically place generated files in the correct project locations.
 
