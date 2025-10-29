@@ -1,0 +1,14 @@
+# Universal Project Organizer - Python Dependencies
+
+# YAML parsing and configuration management
+pyyaml>=6.0.1
+
+# Path manipulation (standard library, but documenting for clarity)
+# pathlib - included in Python 3.4+
+
+# Template engine for file generation
+# jinja2>=3.1.2  # Uncomment when implementing file generation
+
+# Testing framework
+# pytest>=7.4.0  # Uncomment when implementing tests
+# pytest-cov>=4.1.0  # For coverage reports

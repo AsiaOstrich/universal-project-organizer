@@ -1,0 +1,47 @@
+# Example Spring Boot Project Configuration
+# Universal Project Organizer
+
+project_type: spring-boot
+language: java
+version: "1.0"
+base_package: com.example.demo
+
+structure:
+  service:
+    path: "src/main/java/com/example/demo/service"
+    naming: "{Name}Service.java"
+    test_path: "src/test/java/com/example/demo/service"
+    generate_test: true
+
+  controller:
+    path: "src/main/java/com/example/demo/controller"
+    naming: "{Name}Controller.java"
+    test_path: "src/test/java/com/example/demo/controller"
+    generate_test: true
+
+  repository:
+    path: "src/main/java/com/example/demo/repository"
+    naming: "{Name}Repository.java"
+
+  model:
+    path: "src/main/java/com/example/demo/model"
+    naming: "{Name}.java"
+
+  config:
+    path: "src/main/java/com/example/demo/config"
+    naming: "{Name}Config.java"
+
+  dto:
+    path: "src/main/java/com/example/demo/dto"
+    naming: "{Name}DTO.java"
+
+naming_conventions:
+  class: "PascalCase"
+  method: "camelCase"
+  constant: "UPPER_SNAKE_CASE"
+  package: "lowercase"
+
+auto_generate:
+  test_files: true
+  import_statements: true
+  package_declaration: true
