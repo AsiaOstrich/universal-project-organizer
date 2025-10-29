@@ -268,9 +268,22 @@ Claude 執行流程：
 
 ### 開發語言
 - Python 3.8+ （腳本開發）
+- Node.js >= 20.19.0 （OpenSpec 規格管理）
 - Bash（輔助腳本）
 
 ### 依賴
+
+#### Node.js 依賴
+```json
+// package.json
+{
+  "devDependencies": {
+    "@fission-ai/openspec": "latest"
+  }
+}
+```
+
+#### Python 依賴
 ```python
 # requirements.txt
 pyyaml>=6.0        # YAML 配置解析
@@ -281,8 +294,80 @@ pytest>=7.0        # 測試框架
 
 ### 檔案格式
 - YAML（配置檔）
-- Markdown（文檔）
+- Markdown（文檔、OpenSpec 規格）
 - Python（腳本）
+
+### 規格管理工具
+
+本專案使用 [OpenSpec](https://github.com/Fission-AI/OpenSpec) 進行規格驅動開發：
+
+#### OpenSpec 簡介
+- **用途**：AI 驅動的軟體規格管理系統
+- **優點**：
+  - 版本控制的規格文件
+  - 變更提案追蹤（change proposals）
+  - 與 Claude Code 無縫整合
+  - 自動驗證規格格式
+
+#### 安裝方式
+```bash
+# 本地安裝（已在專案中完成）
+npm install @fission-ai/openspec --save-dev
+
+# 使用 npx 執行命令
+npx openspec list
+```
+
+#### 基本命令
+```bash
+# 列出活躍的變更提案
+npx openspec list
+
+# 列出現有規格
+npx openspec list --specs
+
+# 查看變更或規格詳情
+npx openspec show [item-name]
+
+# 驗證變更提案
+npx openspec validate [change-name] --strict
+
+# 歸檔完成的變更
+npx openspec archive <change-name> --yes
+```
+
+#### OpenSpec 目錄結構
+```
+openspec/
+├── project.md              # 專案上下文和慣例
+├── specs/                  # 當前規格（已實作的功能）
+│   └── [capability]/       # 單一功能領域
+│       └── spec.md         # 需求和場景
+├── changes/                # 變更提案（待實作的功能）
+│   └── [change-name]/
+│       ├── proposal.md     # 變更說明
+│       ├── tasks.md        # 實作清單
+│       ├── design.md       # 技術決策（可選）
+│       └── specs/          # 規格變更
+│           └── [capability]/
+│               └── spec.md # ADDED/MODIFIED/REMOVED
+└── archive/                # 已完成的變更
+```
+
+#### 工作流程
+1. **建立變更提案**：當要新增功能或修改架構時
+   ```bash
+   # Claude 會自動建立 changes/[change-id]/ 目錄結構
+   ```
+
+2. **實作功能**：根據 tasks.md 逐步完成
+
+3. **歸檔變更**：功能完成並部署後
+   ```bash
+   npx openspec archive <change-id> --yes
+   ```
+
+詳細使用方式請參考 [openspec/AGENTS.md](../openspec/AGENTS.md)。
 
 ---
 

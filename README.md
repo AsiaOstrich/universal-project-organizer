@@ -20,6 +20,11 @@ Ever asked Claude to generate a file and wondered where it should go? This skill
 
 ## 🚀 Quick Start
 
+### Prerequisites
+
+- **Node.js** >= 20.19.0 (for OpenSpec)
+- **Python** 3.8+ (for utility scripts)
+
 ### Installation
 
 ```bash
@@ -29,9 +34,37 @@ git clone https://github.com/YOUR_USERNAME/universal-project-organizer.git
 # Navigate to the project
 cd universal-project-organizer
 
-# Install dependencies
+# Install Node.js dependencies (OpenSpec)
+npm install
+
+# Install Python dependencies (when available)
 pip install -r requirements.txt
 ```
+
+### OpenSpec Setup
+
+This project uses [OpenSpec](https://github.com/Fission-AI/OpenSpec) for spec-driven development.
+
+OpenSpec is already initialized in this project. You can use the following commands:
+
+```bash
+# List active change proposals
+npx openspec list
+
+# List specifications
+npx openspec list --specs
+
+# View a change or spec
+npx openspec show [item-name]
+
+# Validate changes
+npx openspec validate [change-name] --strict
+
+# Archive completed changes
+npx openspec archive <change-name> --yes
+```
+
+For more details, see [OpenSpec documentation](openspec/AGENTS.md).
 
 ### Usage
 
@@ -98,6 +131,7 @@ structure:
 ## 📚 Documentation
 
 - [📋 Project Specification](docs/project-spec.md) - Detailed technical specification
+- [📖 OpenSpec Guide](docs/openspec-guide.md) - How to use OpenSpec for spec-driven development
 - [⚖️ License Guide](docs/license-guide.md) - Information about the MIT License
 - [🔧 Configuration Guide](docs/configuration.md) - How to configure your project (Coming soon)
 - [🎨 Templates](docs/templates.md) - Available project templates (Coming soon)
