@@ -1,0 +1,7 @@
+# Test: Override parent's service definition with different path
+
+structure:
+  service:
+    path: "src/main/java/{package}/services"  # Note: "services" not "service"
+    naming: "{Name}Service.java"
+    custom_field: "This overrides parent's service config"

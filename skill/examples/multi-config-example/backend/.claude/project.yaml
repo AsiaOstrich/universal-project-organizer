@@ -1,0 +1,51 @@
+# Backend Configuration - Medium Priority (Level 2)
+# Inherits from root config, adds backend-specific settings
+
+project_type: spring-boot
+language: java  # Confirms parent's language
+base_package: com.example.backend
+
+# Inherits naming_conventions from parent (no need to repeat)
+
+# Override and extend defaults
+defaults:
+  generate_test: true      # Inherited from parent
+  auto_import: true        # Inherited from parent
+  generate_javadoc: true   # Added by backend
+
+# Add backend-specific structure (merged with parent's structure)
+structure:
+  service:
+    path: "src/main/java/{package}/service"
+    naming: "{Name}Service.java"
+    test_path: "src/test/java/{package}/service"
+    generate_test: true
+
+  controller:
+    path: "src/main/java/{package}/controller"
+    naming: "{Name}Controller.java"
+    test_path: "src/test/java/{package}/controller"
+    generate_test: true
+
+  repository:
+    path: "src/main/java/{package}/repository"
+    naming: "{Name}Repository.java"
+
+# Backend-specific annotations
+annotations:
+  service:
+    - "@Service"
+  controller:
+    - "@RestController"
+    - "@RequestMapping"
+  repository:
+    - "@Repository"
+
+# Backend-specific imports
+imports:
+  service:
+    - "org.springframework.stereotype.Service"
+  controller:
+    - "org.springframework.web.bind.annotation.*"
+  repository:
+    - "org.springframework.stereotype.Repository"

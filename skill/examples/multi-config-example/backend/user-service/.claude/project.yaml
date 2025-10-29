@@ -1,0 +1,35 @@
+# User Service Configuration - Highest Priority (Level 3)
+# Inherits from backend config, further specializes for this microservice
+
+# Override base_package for this specific service
+base_package: com.example.backend.user
+
+# Inherits all from parent: naming_conventions, defaults, structure, annotations, imports
+
+# Add user-service specific file types
+structure:
+  event_handler:
+    path: "src/main/java/{package}/handler"
+    naming: "{Name}Handler.java"
+    description: "Event handlers for user domain events"
+
+  dto:
+    path: "src/main/java/{package}/dto"
+    naming: "{Name}DTO.java"
+    description: "Data transfer objects for user API"
+
+# Add user-service specific annotations
+annotations:
+  event_handler:
+    - "@Component"
+    - "@EventListener"
+  dto:
+    - "@Data"  # Lombok
+
+# Add user-service specific imports
+imports:
+  event_handler:
+    - "org.springframework.stereotype.Component"
+    - "org.springframework.context.event.EventListener"
+  dto:
+    - "lombok.Data"

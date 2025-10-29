@@ -1,0 +1,24 @@
+# Root Configuration - Lowest Priority (Level 1)
+# This is the base configuration for the entire project
+
+project_name: my-fullstack-app
+version: "1.0"
+language: java  # Default language, can be overridden
+
+# Global naming conventions (inherited by all sub-configs)
+naming_conventions:
+  class: "PascalCase"
+  method: "camelCase"
+  constant: "UPPER_SNAKE_CASE"
+
+# Default settings (can be overridden by children)
+defaults:
+  generate_test: true
+  auto_import: true
+
+# Base structure (will be merged with child structures)
+structure:
+  config:
+    path: "config"
+    naming: "{name}.yaml"
+    description: "Configuration files"
