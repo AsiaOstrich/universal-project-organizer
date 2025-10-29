@@ -2,9 +2,17 @@
 
 This is an example Spring Boot project with Universal Project Organizer configuration.
 
+## Template
+
+This project uses the **spring-boot** template from Universal Project Organizer. The template was initialized with:
+
+```bash
+python skill/scripts/init_project.py --template spring-boot
+```
+
 ## Configuration
 
-The project configuration is in `.claude/project.yaml`.
+The project configuration is in `.claude/project.yaml`. This file was generated from the spring-boot template and can be customized for your specific needs.
 
 ## Defined File Types
 

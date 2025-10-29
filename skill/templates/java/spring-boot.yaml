@@ -1,0 +1,144 @@
+# Spring Boot Project Template
+# Universal Project Organizer
+#
+# This template defines the structure for Spring Boot applications.
+# Use this template when initializing a Spring Boot project.
+
+# Project metadata
+project_type: spring-boot
+language: java
+version: "1.0"
+
+# Base package (will be customized during initialization)
+# This should follow Java package naming conventions: com.company.project
+base_package: com.example.demo
+
+# File structure definitions
+# Each entry defines where files of that type should be placed
+structure:
+  # Service layer - Business logic
+  service:
+    path: "src/main/java/{package}/service"
+    naming: "{Name}Service.java"
+    test_path: "src/test/java/{package}/service"
+    generate_test: true
+    description: "Business logic and service layer components"
+
+  # REST Controllers - API endpoints
+  controller:
+    path: "src/main/java/{package}/controller"
+    naming: "{Name}Controller.java"
+    test_path: "src/test/java/{package}/controller"
+    generate_test: true
+    description: "REST API controllers and endpoints"
+
+  # Repository layer - Data access
+  repository:
+    path: "src/main/java/{package}/repository"
+    naming: "{Name}Repository.java"
+    description: "Data access repositories (JPA/JDBC)"
+
+  # Domain models/entities
+  model:
+    path: "src/main/java/{package}/model"
+    naming: "{Name}.java"
+    description: "Domain models and JPA entities"
+
+  entity:
+    path: "src/main/java/{package}/entity"
+    naming: "{Name}.java"
+    description: "JPA entities (alternative to model)"
+
+  # Data Transfer Objects
+  dto:
+    path: "src/main/java/{package}/dto"
+    naming: "{Name}DTO.java"
+    description: "Data Transfer Objects for API communication"
+
+  # Configuration classes
+  config:
+    path: "src/main/java/{package}/config"
+    naming: "{Name}Config.java"
+    description: "Spring configuration classes"
+
+  # Exception classes
+  exception:
+    path: "src/main/java/{package}/exception"
+    naming: "{Name}Exception.java"
+    description: "Custom exception classes"
+
+  # Utility classes
+  util:
+    path: "src/main/java/{package}/util"
+    naming: "{Name}Util.java"
+    description: "Utility and helper classes"
+
+  # Components (general Spring components)
+  component:
+    path: "src/main/java/{package}/component"
+    naming: "{Name}Component.java"
+    description: "General Spring components"
+
+# Naming conventions
+naming_conventions:
+  class: "PascalCase"
+  method: "camelCase"
+  constant: "UPPER_SNAKE_CASE"
+  package: "lowercase"
+  variable: "camelCase"
+
+# Auto-generation settings
+auto_generate:
+  test_files: true
+  import_statements: true
+  package_declaration: true
+  javadoc: true
+
+# Common annotations by file type
+annotations:
+  service:
+    - "@Service"
+    - "@Transactional (optional)"
+  controller:
+    - "@RestController"
+    - "@RequestMapping"
+  repository:
+    - "@Repository"
+  config:
+    - "@Configuration"
+  component:
+    - "@Component"
+
+# Common imports by file type
+imports:
+  service:
+    - "org.springframework.stereotype.Service"
+    - "org.springframework.beans.factory.annotation.Autowired"
+  controller:
+    - "org.springframework.web.bind.annotation.*"
+    - "org.springframework.http.ResponseEntity"
+  repository:
+    - "org.springframework.data.jpa.repository.JpaRepository"
+    - "org.springframework.stereotype.Repository"
+  model:
+    - "javax.persistence.*"
+  dto:
+    - "com.fasterxml.jackson.annotation.*"
+
+# Project structure notes
+notes: |
+  This is a standard Spring Boot project structure following best practices:
+
+  - Service layer contains business logic
+  - Controllers handle HTTP requests/responses
+  - Repositories manage data access
+  - Models/Entities represent domain objects
+  - DTOs are used for API communication
+
+  Common file generation patterns:
+  - "Create a UserService" → UserService.java + UserServiceTest.java
+  - "Create a ProductController" → ProductController.java + ProductControllerTest.java
+  - "Create a User entity" → User.java in model/ or entity/
+
+  The {package} variable will be replaced with the path version of base_package.
+  For example: com.example.demo → com/example/demo

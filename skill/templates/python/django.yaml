@@ -1,0 +1,142 @@
+# Django Project Template
+# Universal Project Organizer
+#
+# This template defines the structure for Django applications.
+# Use this template when initializing a Django project.
+
+# Project metadata
+project_type: django
+language: python
+version: "1.0"
+
+# File structure definitions
+# Django uses an app-based structure where {app} is the Django app name
+structure:
+  # Models - Database models
+  model:
+    path: "{app}/models.py"
+    naming: "class {Name}(models.Model)"
+    description: "Django ORM models"
+
+  # Views - Request handlers
+  view:
+    path: "{app}/views.py"
+    naming: "class {Name}View"
+    description: "Class-based views"
+
+  function_view:
+    path: "{app}/views.py"
+    naming: "def {name}_view"
+    description: "Function-based views"
+
+  # Serializers - For Django REST Framework
+  serializer:
+    path: "{app}/serializers.py"
+    naming: "class {Name}Serializer(serializers.ModelSerializer)"
+    description: "DRF serializers for API"
+
+  # Forms - Django forms
+  form:
+    path: "{app}/forms.py"
+    naming: "class {Name}Form(forms.ModelForm)"
+    description: "Django forms"
+
+  # Admin - Django admin configuration
+  admin:
+    path: "{app}/admin.py"
+    naming: "class {Name}Admin(admin.ModelAdmin)"
+    description: "Django admin customization"
+
+  # URLs - URL routing
+  urls:
+    path: "{app}/urls.py"
+    naming: "urlpatterns"
+    description: "URL routing configuration"
+
+  # Tests - Unit tests
+  test:
+    path: "{app}/tests/test_{module}.py"
+    naming: "class Test{Name}(TestCase)"
+    description: "Unit tests"
+
+  # Managers - Custom model managers
+  manager:
+    path: "{app}/managers.py"
+    naming: "class {Name}Manager(models.Manager)"
+    description: "Custom model managers"
+
+  # Signals - Django signals
+  signal:
+    path: "{app}/signals.py"
+    naming: "def {name}_signal"
+    description: "Signal handlers"
+
+  # Middleware - Custom middleware
+  middleware:
+    path: "{app}/middleware.py"
+    naming: "class {Name}Middleware"
+    description: "Custom middleware"
+
+  # Utilities - Helper functions
+  util:
+    path: "{app}/utils.py"
+    naming: "def {name}"
+    description: "Utility functions"
+
+# Naming conventions
+naming_conventions:
+  class: "PascalCase"
+  function: "snake_case"
+  constant: "UPPER_SNAKE_CASE"
+  variable: "snake_case"
+  module: "snake_case"
+
+# Auto-generation settings
+auto_generate:
+  test_files: false  # Django tests are usually added to existing test files
+  import_statements: true
+  docstrings: true
+
+# Common imports by file type
+imports:
+  model:
+    - "from django.db import models"
+  view:
+    - "from django.views import View"
+    - "from django.shortcuts import render, get_object_or_404"
+  function_view:
+    - "from django.shortcuts import render, redirect"
+    - "from django.http import HttpResponse"
+  serializer:
+    - "from rest_framework import serializers"
+  form:
+    - "from django import forms"
+  admin:
+    - "from django.contrib import admin"
+  test:
+    - "from django.test import TestCase"
+    - "from django.urls import reverse"
+
+# Project structure notes
+notes: |
+  This is a standard Django project structure following Django conventions:
+
+  - Models define database schema
+  - Views handle request/response logic
+  - Serializers handle API data formatting (DRF)
+  - Forms handle HTML form validation
+  - Admin customizes Django admin interface
+
+  Common file generation patterns:
+  - "Create a User model in accounts app" → accounts/models.py (add User class)
+  - "Create a ProductView in shop app" → shop/views.py (add ProductView class)
+  - "Create a ProductSerializer in api app" → api/serializers.py
+
+  The {app} variable should be the Django app name (e.g., 'accounts', 'blog', 'api').
+  Django typically uses a single file for multiple classes of the same type,
+  so new classes are added to existing files rather than creating new files.
+
+  Example usage:
+  - App: "accounts"
+  - Request: "Create a User model"
+  - Result: Add User class to accounts/models.py

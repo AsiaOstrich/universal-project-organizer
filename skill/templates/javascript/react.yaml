@@ -1,0 +1,173 @@
+# React Project Template
+# Universal Project Organizer
+#
+# This template defines the structure for React applications.
+# Use this template when initializing a React project (Create React App or similar).
+
+# Project metadata
+project_type: react
+language: javascript
+version: "1.0"
+
+# File structure definitions
+structure:
+  # React Components
+  component:
+    path: "src/components/{Name}"
+    naming: "{Name}.jsx"
+    additional_files:
+      - "{Name}.module.css"
+      - "{Name}.test.jsx"
+    description: "React functional components"
+
+  # Pages/Views
+  page:
+    path: "src/pages/{Name}"
+    naming: "{Name}.jsx"
+    additional_files:
+      - "{Name}.module.css"
+    description: "Page-level components"
+
+  # Custom Hooks
+  hook:
+    path: "src/hooks"
+    naming: "use{Name}.js"
+    description: "Custom React hooks"
+
+  # Context providers
+  context:
+    path: "src/context"
+    naming: "{Name}Context.js"
+    description: "React Context providers"
+
+  # Utility functions
+  util:
+    path: "src/utils"
+    naming: "{name}.js"
+    description: "Utility and helper functions"
+
+  # Services - API calls
+  service:
+    path: "src/services"
+    naming: "{name}Service.js"
+    description: "API service modules"
+
+  # Redux slices (if using Redux Toolkit)
+  slice:
+    path: "src/store/slices"
+    naming: "{name}Slice.js"
+    description: "Redux Toolkit slices"
+
+  # Redux reducers (classic Redux)
+  reducer:
+    path: "src/store/reducers"
+    naming: "{name}Reducer.js"
+    description: "Redux reducers"
+
+  # Redux actions
+  action:
+    path: "src/store/actions"
+    naming: "{name}Actions.js"
+    description: "Redux action creators"
+
+  # Constants
+  constant:
+    path: "src/constants"
+    naming: "{name}Constants.js"
+    description: "Application constants"
+
+  # Types (if using TypeScript or PropTypes)
+  type:
+    path: "src/types"
+    naming: "{name}Types.js"
+    description: "Type definitions"
+
+# Naming conventions
+naming_conventions:
+  component: "PascalCase"
+  function: "camelCase"
+  constant: "UPPER_SNAKE_CASE"
+  file: "PascalCase"  # For components
+  variable: "camelCase"
+  hook: "camelCase"  # Should start with 'use'
+
+# Auto-generation settings
+auto_generate:
+  test_files: true
+  css_modules: true
+  import_statements: true
+  prop_types: false  # Set to true if using PropTypes
+  typescript: false  # Set to true for TypeScript projects
+
+# Component template preferences
+component_preferences:
+  type: "functional"  # functional or class
+  hooks: true
+  export_type: "default"  # default or named
+
+# Common imports by file type
+imports:
+  component:
+    - "import React from 'react'"
+    - "import styles from './{Name}.module.css'"
+  page:
+    - "import React from 'react'"
+    - "import styles from './{Name}.module.css'"
+  hook:
+    - "import {{ useState, useEffect }} from 'react'"
+  context:
+    - "import React, {{ createContext, useContext, useState }} from 'react'"
+  slice:
+    - "import {{ createSlice }} from '@reduxjs/toolkit'"
+  reducer:
+    - "// Redux reducer imports"
+  service:
+    - "import axios from 'axios'"  # or fetch
+
+# CSS module template
+css_module_template: |
+  .container {
+    /* Container styles */
+  }
+
+  .title {
+    /* Title styles */
+  }
+
+# Test template preferences
+test_template:
+  framework: "jest"  # jest or vitest
+  testing_library: "react-testing-library"
+
+# Project structure notes
+notes: |
+  This is a standard React project structure following modern React patterns:
+
+  - Components are organized in their own directories with related files
+  - Each component can have its own CSS module and test file
+  - Custom hooks follow the 'use' naming convention
+  - Pages represent route-level components
+  - Services handle API communication
+
+  Common file generation patterns:
+  - "Create a LoginForm component" →
+      src/components/LoginForm/LoginForm.jsx
+      src/components/LoginForm/LoginForm.module.css
+      src/components/LoginForm/LoginForm.test.jsx
+
+  - "Create a useAuth hook" →
+      src/hooks/useAuth.js
+
+  - "Create a Dashboard page" →
+      src/pages/Dashboard/Dashboard.jsx
+      src/pages/Dashboard/Dashboard.module.css
+
+  Component structure:
+  - Functional components with hooks (default)
+  - CSS Modules for scoped styling
+  - Jest + React Testing Library for tests
+
+  The {Name} variable will be used for component names (PascalCase).
+  The {name} variable will be used for utilities and services (camelCase).
+
+  For TypeScript projects, change file extensions to .tsx and .ts as needed.
