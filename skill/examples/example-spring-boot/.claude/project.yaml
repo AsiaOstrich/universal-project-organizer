@@ -45,3 +45,31 @@ auto_generate:
   test_files: true
   import_statements: true
   package_declaration: true
+
+# Annotations by file type
+annotations:
+  service:
+    - "@Service"
+  controller:
+    - "@RestController"
+    - "@RequestMapping"
+  repository:
+    - "@Repository"
+  config:
+    - "@Configuration"
+
+# Imports by file type
+imports:
+  service:
+    - "org.springframework.stereotype.Service"
+    - "org.springframework.beans.factory.annotation.Autowired"
+  controller:
+    - "org.springframework.web.bind.annotation.*"
+    - "org.springframework.http.ResponseEntity"
+  repository:
+    - "org.springframework.data.jpa.repository.JpaRepository"
+    - "org.springframework.stereotype.Repository"
+  model:
+    - "javax.persistence.*"
+  dto:
+    - "com.fasterxml.jackson.annotation.*"
