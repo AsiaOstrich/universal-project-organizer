@@ -3,7 +3,10 @@
 > A Claude Skill that helps developers automatically place generated files in the correct project locations.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Status](https://img.shields.io/badge/Status-In%20Development-orange.svg)]()
+[![Status](https://img.shields.io/badge/Status-MVP%20Ready-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/Tests-34%20Passing-success.svg)]()
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)]()
+[![Node](https://img.shields.io/badge/Node-20.19%2B-green.svg)]()
 
 ## 🎯 Overview
 
@@ -68,21 +71,50 @@ For more details, see [OpenSpec documentation](openspec/AGENTS.md).
 
 ### Usage
 
-1. **Initialize your project** (one-time setup per project)
-   ```bash
-   # Auto-detect project type
-   python scripts/init_project.py
-   
-   # Or use a template
-   python scripts/init_project.py --template spring-boot
-   ```
+#### 1. Set up your project configuration
 
-2. **Use with Claude**
-   ```
-   User: "Create a UserService class"
-   Claude: [reads .claude/project.yaml]
-           [generates file at correct location]
-   ```
+Create `.claude/project.yaml` in your project root:
+
+```yaml
+project_type: spring-boot  # or django, react
+language: java             # or python, javascript
+base_package: com.example.demo
+
+structure:
+  service:
+    path: "src/main/java/{package}/service"
+    naming: "{Name}Service.java"
+    generate_test: true
+```
+
+Or use a pre-built template:
+```bash
+# View available templates
+python skill/scripts/template_loader.py
+
+# Use a template (copy to your project)
+cp skill/templates/java/spring-boot.yaml your-project/.claude/project.yaml
+```
+
+#### 2. Use with Claude
+
+Simply ask Claude to create files:
+
+```
+You: "Create a UserService"
+
+Claude: ✓ Created service: User
+
+Generated 2 file(s):
+  ✓ src/main/java/com/example/demo/service/UserService.java
+  ✓ [TEST] src/test/java/com/example/demo/service/UserServiceTest.java
+```
+
+Claude will:
+- Read your `.claude/project.yaml`
+- Determine the correct file path
+- Generate boilerplate code with annotations
+- Create test files automatically
 
 ## 📖 How It Works
 
@@ -130,11 +162,21 @@ structure:
 
 ## 📚 Documentation
 
+### Core Documentation
+- [⚡ **SKILL.md**](SKILL.md) - **Complete skill interface guide for Claude**
 - [📋 Project Specification](docs/project-spec.md) - Detailed technical specification
-- [📖 OpenSpec Guide](docs/openspec-guide.md) - How to use OpenSpec for spec-driven development
-- [⚖️ License Guide](docs/license-guide.md) - Information about the MIT License
-- [🔧 Configuration Guide](docs/configuration.md) - How to configure your project (Coming soon)
-- [🎨 Templates](docs/templates.md) - Available project templates (Coming soon)
+- [🔧 Configuration Schema](docs/config-schema.md) - YAML configuration reference
+- [🎨 Available Templates](docs/available-templates.md) - 3 built-in templates (Spring Boot, Django, React)
+- [📖 Templates Guide](docs/templates.md) - Template system documentation
+
+### Advanced Features
+- [🔀 Hierarchical Configuration](skill/examples/multi-config-example/README.md) - Priority rules and merging
+- [📖 OpenSpec Guide](docs/openspec-guide.md) - Spec-driven development with OpenSpec
+- [⚖️ License Guide](docs/license-guide.md) - MIT License information
+
+### Examples
+- [Spring Boot Example](skill/examples/example-spring-boot/) - Complete configuration example
+- [Multi-Config Example](skill/examples/multi-config-example/) - Monorepo / multi-module setup
 
 ## 🛠️ Development
 
@@ -155,8 +197,16 @@ universal-project-organizer/
 ### Running Tests
 
 ```bash
-pytest tests/
+# Run all unit tests
+python3 tests/test_config_parser.py
+python3 tests/test_path_resolver.py
+python3 tests/test_template_loader.py
+
+# Run workflow tests
+python3 skill/examples/skill-workflow-test.py
 ```
+
+**Test Results**: ✅ 34/34 tests passing
 
 ### Contributing
 
@@ -164,25 +214,31 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 
 ## 🗺️ Roadmap
 
-### Phase 1: MVP (Current)
-- [x] Project specification
-- [ ] Basic SKILL.md structure
-- [ ] Configuration file parser
-- [ ] 3 basic templates (Spring Boot, Django, React)
-- [ ] File generation logic
+### ✅ Phase 1: MVP (COMPLETE!)
+- [x] Project specification & OpenSpec setup
+- [x] Complete SKILL.md interface
+- [x] Configuration parser (single & hierarchical)
+- [x] 3 core templates (Spring Boot, Django, React)
+- [x] File generation engine
+- [x] Path resolution system
+- [x] Template loader
+- [x] Comprehensive testing (34 tests)
+- [x] Full documentation
 
-### Phase 2: Enhancement
-- [ ] Auto-detection system
-- [ ] More project templates
-- [ ] Configuration validation
-- [ ] Comprehensive documentation
-- [ ] Test coverage
+### 🚧 Phase 2: Enhancement (In Progress)
+- [ ] Auto-detection system for project types
+- [ ] More project templates (Maven, Flask, Next.js, Vue, etc.)
+- [ ] VS Code extension
+- [ ] Configuration migration tools
+- [ ] Performance optimization
 
-### Phase 3: Advanced Features
-- [ ] Custom rule engine
-- [ ] VS Code integration
-- [ ] Team configuration sharing
-- [ ] MCP server version (optional)
+### 📅 Phase 3: Advanced Features
+- [ ] Custom rule engine DSL
+- [ ] Team configuration sharing platform
+- [ ] MCP server version
+- [ ] Real-time validation
+- [ ] IDE plugins (JetBrains, VS Code)
+- [ ] AI-powered template generation
 
 ## 💡 Why This Project?
 
